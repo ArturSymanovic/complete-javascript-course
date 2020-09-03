@@ -1,0 +1,17 @@
+{
+  "name": "forkify-as",
+  "version": "1.0.0",
+  "description": "My copy of forkify project following the Udemy JavaScript course.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "Artur Symanovic",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {}
+}
