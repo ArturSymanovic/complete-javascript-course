@@ -1,6 +1,7 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
+import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
@@ -59,6 +60,40 @@ elements.searchResultsPages.addEventListener('click', e => {
         searchView.renderResults(state.search.result, goToPage);
     }
 });
+
+
+/* 
+    LIKES CONTROLLER 
+*/
+const controlLike = () => {
+    // Create a new list if there is none yet;
+    if (!state.likes) state.likes = new Likes();
+
+    const currentID = state.recipe.id;
+
+    if (!state.likes.isLiked(currentID)) {
+        // Add like to the state
+        const newLike = state.likes.addLike(
+            currentID,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );
+        // Toggle like button
+
+        // Add like to UI list
+        console.log(state.likes);
+    } else {
+        // Remove like from  the state
+        state.likes.deleteLike(currentID);
+        // Toggle like button
+
+        // Remove like from UI list
+        console.log(state.likes);
+    }
+}
+
+
 
 
 
@@ -149,6 +184,8 @@ elements.recipe.addEventListener('click', e => {
         recipeView.updateServingsIngredients(state.recipe);
     } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')) {
         controlList();
+    } else if (e.target.matches('.recipe__love, .recipe__love *')) {
+        controlLike();
     }
 });
 
