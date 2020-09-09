@@ -66,10 +66,6 @@ elements.searchResultsPages.addEventListener('click', e => {
 /* 
     LIKES CONTROLLER 
 */
-//TESTING ONLY
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumLikes());
-
 const controlLike = () => {
     // Create a new list if there is none yet;
     if (!state.likes) state.likes = new Likes();
@@ -103,6 +99,15 @@ const controlLike = () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
 
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+
+    state.likes.readStorage();
+
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    state.likes.likes.forEach( like => likesView.renderLike(like));
+});
 
 /* 
     LIST CONTROLLER 
@@ -195,6 +200,3 @@ elements.recipe.addEventListener('click', e => {
         controlLike();
     }
 });
-
-
-window.l = new List();
